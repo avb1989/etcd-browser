@@ -92,6 +92,9 @@ app.controller('NodeCtrl', ['$scope','$http','$cookies', function($scope,$http,$
   }
 
   $scope.deleteNode = function(node){
+    if (!confirm("Are you sure you want to delete " + node.key + " ?")) {
+        return;
+    }
     $http({method: 'DELETE', url: $scope.getPrefix() + keyPrefix + node.key}).
     success(function(data) {
       $scope.loadNode(node.parent);
